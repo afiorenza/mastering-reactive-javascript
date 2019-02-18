@@ -1,5 +1,5 @@
 {
-  "name": "rxjs-examples",
+  "name": "mastering-reactive-javascript",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,8 +9,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "rxjs": "6.2.2",
-    "rxjs-compat": "6.2.2"
+    "baconjs": "^0.7.88",
+    "rx": "^4.1.0"
   },
   "devDependencies": {
     "html-webpack-plugin": "^3.2.0",
