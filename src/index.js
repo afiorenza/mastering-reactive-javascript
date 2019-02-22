@@ -3,6 +3,7 @@ const Rx = require('rx');
 const todoInput = document.getElementById('todo-input');
 const addTodoButton = document.getElementById('add-todo-button');
 const todosList = document.getElementById('todos-list');
+const toggleAllButton = document.getElementById('done-all-button');
 
 const todos = new Rx.BehaviorSubject([]);
 
@@ -13,7 +14,9 @@ const todoInputKeyUpObservable = Rx.Observable.fromEvent(todoInput, 'keyup')
 const addTodoButtonObservable = Rx.Observable.fromEvent(addTodoButton, 'click')
   .map(() => todoInput.value);
 
-const toggleObservable = new Rx.Subject()
+const toggleAllButtonObservable = Rx.Observable.fromEvent(toggleAllButton, 'click');
+
+const toggleObservable = new Rx.Subject();
 
 toggleObservable
   .subscribe(key => {
@@ -38,6 +41,14 @@ todoInputKeyUpObservable
 
     todoInput.value = '';
   });
+
+  toggleAllButtonObservable
+    .subscribe(() => {
+      todos.onNext(todos.value.map(todo => ({
+        ...todo,
+        done: true
+      })));
+    })
 
 todos
   .subscribe((todos) => {
